@@ -1,0 +1,31 @@
+{
+  "exported_at": "2026-11-23",
+  "product": "T3 Code Beta",
+  "version": "0.1.11",
+  "verified_platform": "macOS Apple silicon",
+  "base_asar_sha256": "a505328c7a183f98103867e06ab46a93dd7f8739bc2990b6a73cd93fafd37959",
+  "patched_asar_sha256": "4daebdcd79c36607b5cae58070083fed1a7aefe0c8f0fbd4ca4912058835f41c",
+  "theme_sha256": "bdb39dcbf240475968fbb81a904f5786907ff451611ccc6b122fa598af043a60",
+  "rebuild": {
+    "matches_installed_application": true,
+    "filesChecked": 2780,
+    "identicalFiles": 2778,
+    "replacedFiles": 2,
+    "unpackedOrLink": 109,
+    "integrityValid": true,
+    "headerRoundTrip": true
+  },
+  "replaced_files": [
+    "apps/server/dist/client/assets/_chat-CpVn0Bm5.js",
+    "apps/server/dist/server-8K5Ixyrs.mjs"
+  ],
+  "checks": [
+    "Patch sources and theme match the installed version",
+    "Python and JavaScript syntax validated",
+    "JSON validated",
+    "Full ASAR rebuild and content verification passed",
+    "The installed application was not modified"
+  ],
+  "includes_personal_data": false,
+  "scope": "Theme and patch sources only. The full T3 application is not distributed. Neither apply nor restore was run against the installed application during export."
+}

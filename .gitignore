@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.asar
+*.asar.unpacked/
+.token-panel-build-*/
