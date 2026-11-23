@@ -28,6 +28,81 @@ The documentation is in English. The exported panel keeps its original Spanish l
 
 The scripts use standard libraries and do not require `npm install`, `pip install`, API keys, or an external pricing service. Windows, Linux, other T3 releases, and other application builds have not been verified. A matching version number alone does not guarantee compatibility: the installer also checks the archive, application metadata, and Electron ASAR integrity setting.
 
+## Install with a coding agent
+
+Give your coding agent this repository URL and the prompt below. It can inspect the local installation, prepare the patch, and guide you through the remaining steps. A separate clone of this repository keeps the installation tools together; the target is your installed T3 desktop application.
+
+### Copy-and-paste prompt
+
+```text
+Help me install the custom theme and conversation cost panel from:
+https://github.com/andresalvareez/t3-token-panel
+
+Read the repository README and applicable local agent instructions first.
+Unless I explicitly request only the theme, install both the theme and panel.
+Use the following workflow:
+
+1. Clone the repository into a new folder, or inspect and reuse an existing
+   clean checkout. Preserve unrelated work and existing configuration.
+   Run the repository commands from its root folder.
+
+2. Inspect the operating system, T3 application path and version, and the
+   available Python and Node versions. The verified target is T3 Code Beta
+   0.1.11 on macOS at /Applications/T3 Code (Beta).app. Do not assume that
+   matching the version number means the build is compatible.
+
+3. Verify the repository files with:
+     shasum -a 256 -c SHA256SUMS.txt
+   Then check the installed application with:
+     python3 -I patch/install.py check
+   If a requirement or compatibility check fails, explain the exact blocker
+   and the next useful step. Never bypass the version/hash/fuse checks or
+   substitute new expected hashes merely to make an incompatible build pass.
+
+4. If compatible, run:
+     python3 -I patch/prepare.py
+   Confirm that the rebuilt archive matches the expected output hash and
+   that verification reports only the two intended asset replacements.
+   Preparation must leave the installed application unchanged.
+
+5. Apply the patch only while T3 is completely closed:
+     python3 -I patch/install.py apply
+   Preserve the original backup. If you are running inside T3 itself, finish
+   preparation and give me the exact external Terminal commands before I
+   quit T3. Do not terminate the application hosting your own active session
+   or interrupt other running work to install the patch.
+
+6. Reopen T3 and activate the theme from the repository root:
+     "$HOME/.t3/bin/t3" theme set "$PWD/theme/token-panel.json" --id token-panel --base-dir "$HOME/.t3"
+   If the CLI is unavailable, follow the README's manual theme-copy steps.
+   Preserve unrelated settings and any existing theme file before replacing
+   it. Ask me to select Panel de tokens if a UI selection is still needed.
+
+7. Verify the installed state with patch/install.py check. Confirm the panel
+   in a conversation with recorded usage when UI access is available;
+   otherwise state that visual verification remains for me. Explain that
+   the main cost covers the selected thread's available provider turns,
+   subagent costs are separate, and all amounts are estimates in USD.
+
+8. Finish with what was completed, any remaining manual step, the backup
+   location, and the restore command:
+     python3 -I patch/install.py restore
+   Restoration also requires T3 to be closed. Do not claim installation or
+   visual verification succeeded unless you actually checked it.
+
+For an incompatible build, report the findings before attempting a port.
+Adapting the patch requires reviewing that build's actual client/server
+assets, preserving authentication and integrity checks, and verifying a
+new rebuild. Use the repository's adaptation notes; do not blindly apply
+this build-specific patch to another release or platform.
+```
+
+If you only want the theme, replace the installation request with **"Install only the JSON theme; skip the code patch."** The agent should then use the theme activation steps and explain that the additional cost cards require the code patch.
+
+### Expected agent handoff
+
+A useful completion report identifies the detected T3 build, compatibility result, prepared/installed state, active theme, backup location, and any pending visual check. If installation must continue after closing T3, the agent should provide commands with the actual checkout path so you can run them from an external Terminal. Sharing this repository does not require sharing your conversations, provider credentials, or complete settings file.
+
 ## Installation
 
 ### 1. Download the repository
